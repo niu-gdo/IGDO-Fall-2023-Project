@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class CharacterController : MonoBehaviour
 {
+    public GameObject weaponProjectile;
     private Rigidbody2D _rb;
     private Vector2 _movement;
 
@@ -20,6 +21,12 @@ public class CharacterController : MonoBehaviour
     private void FixedUpdate()
     {
         _rb.AddForce(_movement * _movementSpeed * Time.deltaTime);
+
+        // Check if the player is firing a weapon
+        if (Input.GetButtonDown("Fire1"))
+        {
+            Instantiate(weaponProjectile, _rb.position, Quaternion.identity);
+        }
     }
 
 

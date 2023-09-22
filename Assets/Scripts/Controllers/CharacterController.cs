@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System;
 
 public class CharacterController : MonoBehaviour
 {
@@ -20,6 +21,8 @@ public class CharacterController : MonoBehaviour
     private void FixedUpdate()
     {
         _rb.AddForce(_movement * _movementSpeed * Time.deltaTime);
+        Vector3 gravity = Vector3.down * (float)calcGravity();
+        _rb.AddForce(Vector3.down * (float)calcGravity());
     }
 
 
@@ -31,5 +34,15 @@ public class CharacterController : MonoBehaviour
     public void OnJump(InputValue value)
     {
         _rb.AddForce(Vector2.up * _jumpForce);
+    }
+
+    double calcGravity()
+    {
+        double playerX = _rb.position.x;
+        double playerY = _rb.position.y;
+
+        double distance = Math.Pow(Math.Pow(4 - playerX, 2) + Math.Pow(-3 - playerY, 2), 0.5);
+
+        return (1/distance)*7;
     }
 }

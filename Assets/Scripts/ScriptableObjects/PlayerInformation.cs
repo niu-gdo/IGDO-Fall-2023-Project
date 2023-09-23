@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ScriptableObjects
 {
-    public class PlayerInformation : ScriptableObject, Damagable
+    public class PlayerInformation : MonoBehaviour, Damagable
     {
         public PlayerInformation(double maxHealth)
         {

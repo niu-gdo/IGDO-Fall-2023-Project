@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 356603133}
   - component: {fileID: 356603134}
   - component: {fileID: 356603135}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -483,7 +483,7 @@ GameObject:
   - component: {fileID: 626649734}
   - component: {fileID: 626649736}
   - component: {fileID: 626649735}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -791,9 +791,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 756841344}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c687a99397701b46a165cb3b602ebf3, type: 3}
+  m_Script: {fileID: 11500000, guid: 586af33cc50d7704ea4f79b1b9d5b8a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 8
   _movementSpeed: 500
   _jumpForce: 450
 --- !u!1 &1398729383
@@ -841,7 +844,7 @@ GameObject:
   - component: {fileID: 1800887317}
   - component: {fileID: 1800887319}
   - component: {fileID: 1800887318}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}

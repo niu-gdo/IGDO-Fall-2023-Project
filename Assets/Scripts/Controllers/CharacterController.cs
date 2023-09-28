@@ -30,48 +30,12 @@ public class CharacterController : MonoBehaviour
 
     public void OnInteract(InputValue value)
     {
-        // Use a raycast to check if a pickup is in front of the player
-        // ternary conditional is used to decide what direction to fire raycast based on _direction
-        RaycastHit2D hit = Physics2D.Raycast(
-            transform.position,
-            (_direction == FacingDirection.Right) ? Vector2.right : Vector2.left,
-            _pickupRange
-        );
 
-        //Debug.Log(hit.collider);
-
-        //if interacable is found, interact with it
-        if (hit.collider != null && hit.collider.CompareTag("Pickup"))
-        {
-            _characterItemHandler.PickupObject(hit.collider.gameObject);
-        }
-    }
-
-    public void OnDrop(InputValue value)
-    {
-        _characterItemHandler.DropItem();
-
-    }
-
-    private void ProcessMovement(InputValue value)
-    {
         _movement = value.Get<Vector2>();
-
-        if (value.Get<Vector2>() == Vector2.right)
-        {
-            _direction = FacingDirection.Right;
-        }
-        else if (value.Get<Vector2>() == Vector2.left)
-        {
-            _direction = FacingDirection.Left;
-        }
-        _characterItemHandler.UpdateItemView();
     }
 
-
-    public void OnShoot(InputValue value) => OnTriggerHeld?.Invoke(value.isPressed);
-    public void OnMove(InputValue value) => ProcessMovement(value);
-   
-
-    public void OnJump(InputValue value) => OnJumpInput?.Invoke();
+    public void OnJump(InputValue value)
+    {
+        _rb.AddForce(Vector2.up * _jumpForce);
+    }
 }

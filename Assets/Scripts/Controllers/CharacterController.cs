@@ -25,20 +25,8 @@ public class CharacterController : MonoBehaviour
 
     public void OnMove(InputValue value)
     {
-        // check if vector2.up is present, we don't use that yet so we odn't need it at all
-        if (value.Get<Vector2>().y > 0)
-        {
-            //if up is present, reset y to 0
-            Vector2 move = value.Get<Vector2>();
-            move.y = 0;
-            _movement = move;
-        }
-        else
-        {
-            _movement = value.Get<Vector2>();
-        }
-        
-        //Debug.Log(value.Get<Vector2>());
+
+        _movement = value.Get<Vector2>();
     }
 
     public void OnJump(InputValue value)

@@ -21,8 +21,8 @@ public class CharacterController : MonoBehaviour
     private void FixedUpdate()
     {
         _rb.AddForce(_movement * _movementSpeed * Time.deltaTime);
-        Vector3 gravity = Vector3.down * (float)calcGravity();
-        _rb.AddForce(Vector3.down * (float)calcGravity());
+        // Vector3 gravity = Vector3.down * (float)calcGravity();
+        // _rb.AddForce(Vector3.down * (float)calcGravity());
     }
 
 
@@ -36,13 +36,28 @@ public class CharacterController : MonoBehaviour
         _rb.AddForce(Vector2.up * _jumpForce);
     }
 
-    double calcGravity()
+    void OnTriggerStay2D(Collider2D other)
+    {
+        float placeX = other.transform.position.x;
+        float placeY = other.transform.position.y;
+
+        _rb.AddForce(Vector3.down * (float)calcGravity(placeX, placeY));
+    }
+
+    double calcGravity(float placeX, float placeY)
     {
         double playerX = _rb.position.x;
         double playerY = _rb.position.y;
 
-        double distance = Math.Pow(Math.Pow(4 - playerX, 2) + Math.Pow(-3 - playerY, 2), 0.5);
+        double distance = Math.Pow(Math.Pow(placeX - playerX, 2) + Math.Pow(placeY - playerY, 2), 0.5);
 
-        return (1/distance)*7;
+        double gravity = (1 / distance) * 20;
+
+        if(gravity > 20)
+        {
+            gravity = 20;
+        }
+
+        return gravity;
     }
 }

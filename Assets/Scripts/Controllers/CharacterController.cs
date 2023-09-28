@@ -9,8 +9,8 @@ public class CharacterController : MonoBehaviour
     private Rigidbody2D _rb;
     private Vector2 _movement;
 
-    [SerializeField] private float _movementSpeed = 500f;
-    [SerializeField] private float _jumpForce = 450f;
+    [SerializeField] private float _movementSpeed = 400f;
+    [SerializeField] private float _jumpForce = 100f;
 
     // Start is called before the first frame update
     void Awake()
@@ -50,12 +50,22 @@ public class CharacterController : MonoBehaviour
         double playerY = _rb.position.y;
 
         double distance = Math.Pow(Math.Pow(placeX - playerX, 2) + Math.Pow(placeY - playerY, 2), 0.5);
-
-        double gravity = (1 / distance) * 20;
-
-        if(gravity > 20)
+        double maxGravity = 20;
+    
+        double gravity;
+        if(distance > 0.1)
         {
-            gravity = 20;
+            gravity = (1 / distance) * maxGravity;
+        }
+        else
+        {
+            gravity = (1 / 0.1) * maxGravity;
+        }
+        
+
+        if(gravity > maxGravity)
+        {
+            gravity = maxGravity;
         }
 
         return gravity;

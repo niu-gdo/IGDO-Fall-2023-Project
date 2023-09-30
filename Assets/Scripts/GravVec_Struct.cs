@@ -1,5 +1,9 @@
 using UnityEngine;
 
+/// <summary>
+/// Struct added to pass vectors around but with a little more data for ease/cleanliness.
+/// We hold the force and gravity level this force is working with
+/// </summary>
 public struct GravVec
 {
     public Vector2 Force;

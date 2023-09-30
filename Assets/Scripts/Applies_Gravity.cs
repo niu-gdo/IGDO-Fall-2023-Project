@@ -48,7 +48,7 @@ public class Applies_Gravity : MonoBehaviour
         // Apply each force to the current body
         foreach (var force in _appliedForces)
         {
-            _rb.AddForce(force.CalcGrav(_rb));
+            _rb.AddForce(force.CalcGrav(_rb).Force);
         }
         
     }

@@ -264,7 +264,7 @@ GameObject:
   - component: {fileID: 493958434}
   - component: {fileID: 493958433}
   - component: {fileID: 493958432}
-  - component: {fileID: 493958431}
+  - component: {fileID: 493958435}
   m_Layer: 0
   m_Name: Square (7)
   m_TagString: Untagged
@@ -272,23 +272,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &493958431
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 493958430}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32813193e2510634792d7cb00a5a9984, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _gravStrength: 30
-  _gravType: 0
-  _gravAngle: 3.1415927
-  _gravPriority: 0
-  _maxForce: 30
 --- !u!61 &493958432
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -401,6 +384,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &493958435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 493958430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78702ffdd4ff8d696a33ce22b1771594, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gravStrength: 30
+  _gravType: 0
+  _gravAngle: 3.1415927
+  _gravPriority: 0
+  _maxForce: 30
 --- !u!1 &511327298
 GameObject:
   m_ObjectHideFlags: 0
@@ -696,14 +696,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 615419981}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32813193e2510634792d7cb00a5a9984, type: 3}
+  m_Script: {fileID: 11500000, guid: 78702ffdd4ff8d696a33ce22b1771594, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gravStrength: 30
+  _gravStrength: 200
   _gravType: 1
   _gravAngle: 4.712389
   _gravPriority: 1
-  _maxForce: 300
+  _maxForce: 50
 --- !u!212 &615419983
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1177,7 +1177,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 669389766}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9dbb10b0383148c46a81a18467e597b1, type: 3}
+  m_Script: {fileID: 11500000, guid: ea3f33224b026687eae27fd06f621e26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _gravLevelUse: 0
@@ -1348,10 +1348,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 684282963}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32813193e2510634792d7cb00a5a9984, type: 3}
+  m_Script: {fileID: 11500000, guid: 78702ffdd4ff8d696a33ce22b1771594, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gravStrength: 20
+  _gravStrength: 10
   _gravType: 0
   _gravAngle: 4.712389
   _gravPriority: 0
@@ -1756,7 +1756,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 756841344}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9dbb10b0383148c46a81a18467e597b1, type: 3}
+  m_Script: {fileID: 11500000, guid: ea3f33224b026687eae27fd06f621e26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _gravLevelUse: 1
@@ -2048,10 +2048,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1100276995}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32813193e2510634792d7cb00a5a9984, type: 3}
+  m_Script: {fileID: 11500000, guid: 78702ffdd4ff8d696a33ce22b1771594, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gravStrength: 30
+  _gravStrength: 20
   _gravType: 0
   _gravAngle: 1.570796
   _gravPriority: 0
@@ -2227,14 +2227,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1543614552}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32813193e2510634792d7cb00a5a9984, type: 3}
+  m_Script: {fileID: 11500000, guid: 78702ffdd4ff8d696a33ce22b1771594, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _gravStrength: 200
   _gravType: 0
   _gravAngle: 4.712389
   _gravPriority: 0
-  _maxForce: 300
+  _maxForce: 200
 --- !u!61 &1543614554
 BoxCollider2D:
   m_ObjectHideFlags: 0

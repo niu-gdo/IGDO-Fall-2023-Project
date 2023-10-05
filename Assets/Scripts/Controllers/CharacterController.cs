@@ -14,12 +14,12 @@ public class CharacterController : MonoBehaviour
     private Camera _cam; //Gives access to the main game camera
     private CapsuleCollider2D _playerBoundingBox; //Bounding box for the collision detection of the player.
     private bool _isTriggerHeld = false; //Tracks if the left mouse button is being held.
-    private Rigidbody2D _projectileCollision; //Collision detection for the projectile fired by the current weapon. Used to move projectiles after firing.
-    private float _bulletSpeed = 800f; //Speed of projectiles fired by current weapon; 800 is default value.
-    private int _weaponHeld = 0; //Weapon currently in use by the player.
+    private Rigidbody2D _projectileCollision; //Collision detection for the projectile fired by the current weapon. Used to move projectiles after firing
+    private int _weaponHeld = 1; //Weapon currently in use by the player.
 
     [SerializeField] private float _movementSpeed = 500f;
     [SerializeField] private float _jumpForce = 450f;
+    [SerializeField] private float _bulletSpeed = 800f; //Speed of projectiles fired by current weapon; 800 is default value.
 
     // Start is called before the first frame update
     void Awake()
@@ -41,6 +41,9 @@ public class CharacterController : MonoBehaviour
         //Handle the logic to determine what weapon to fire.
         switch(_weaponHeld)
         {
+            case 0:
+                Debug.Log("Weapon Held: " + _weaponHeld);
+                break;
             default:
                 //Get values necessary to spawn projectiles outside of player collision
                 _projectileSpawnModifier = Input.mousePosition - _cam.WorldToScreenPoint(_rb.position);
@@ -84,5 +87,12 @@ public class CharacterController : MonoBehaviour
     public void OnJump(InputValue value)
     {
         _rb.AddForce(Vector2.up * _jumpForce);
+    }
+
+    public void OnDrop(InputValue value) {
+        GameObject droppedWeapon = Instantiate(_weaponProjectile, _rb.position + _projectileSpawnModifier, Quaternion.identity);
+        _projectileSpawnModifier.Normalize();
+        _projectileCollision = droppedWeapon.GetComponent<Rigidbody2D>();
+        _weaponHeld = 0;
     }
 }

@@ -14,12 +14,15 @@ public class CharacterController : MonoBehaviour
     private Camera _cam; //Gives access to the main game camera
     private CapsuleCollider2D _playerBoundingBox; //Bounding box for the collision detection of the player.
     private bool _isTriggerHeld = false; //Tracks if the left mouse button is being held.
-    private Rigidbody2D _projectileCollision; //Collision detection for the projectile fired by the current weapon. Used to move projectiles after firing
+    private Rigidbody2D _projectileCollision; //Collision detection for the projectile fired by he current weapon. Used to move projectiles after firing
+    private Rigidbody2D _thrownCollision; //Collision detection for the projectile fired by the current weapon. Used to move projectiles after firing
     private int _weaponHeld = 1; //Weapon currently in use by the player.
 
     [SerializeField] private float _movementSpeed = 500f;
     [SerializeField] private float _jumpForce = 450f;
     [SerializeField] private float _bulletSpeed = 800f; //Speed of projectiles fired by current weapon; 800 is default value.
+    [SerializeField] private float _throwForce = 400.0f; // Force of throwing a weapon
+    [SerializeField] private float _throwFriction = 10.0f; // Friction of model hitting ground
 
     // Start is called before the first frame update
     void Awake()
@@ -90,9 +93,17 @@ public class CharacterController : MonoBehaviour
     }
 
     public void OnDrop(InputValue value) {
-        GameObject droppedWeapon = Instantiate(_weaponProjectile, _rb.position + _projectileSpawnModifier, Quaternion.identity);
-        _projectileSpawnModifier.Normalize();
-        _projectileCollision = droppedWeapon.GetComponent<Rigidbody2D>();
-        _weaponHeld = 0;
+        if (!(_weaponHeld == 0)) {
+            GameObject droppedWeapon = Instantiate(_weaponProjectile, _rb.position + _projectileSpawnModifier, Quaternion.identity);
+            _projectileSpawnModifier.Normalize();
+            _projectileCollision = droppedWeapon.GetComponent<Rigidbody2D>();
+
+
+            //if (_weaponHeld != null) {
+                //Vector2 _throwDirection = transform.right.normalized;
+                //_thrownCollision.AddForce(_throwDirection * _throwForce);
+            //}
+            _weaponHeld = 0;
+        }
     }
 }

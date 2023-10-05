@@ -7,6 +7,7 @@ public class CharacterController : MonoBehaviour
 {
     [SerializeField] private GameObject _weaponProjectile; //Basic projectile prefab, spawned when player fires.
     private Rigidbody2D _rb;
+    
     private Vector2 _movement;
     private float _fireRate = 0; //Used to control weapon firing speed.
     private Vector2 _projectileSpawnModifier; //The offset for spawning projectiles, and the direction they should move in after being fired.
@@ -76,6 +77,7 @@ public class CharacterController : MonoBehaviour
 
     public void OnMove(InputValue value)
     {
+
         _movement = value.Get<Vector2>();
     }
 

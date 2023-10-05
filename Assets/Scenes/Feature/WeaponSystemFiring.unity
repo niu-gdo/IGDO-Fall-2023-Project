@@ -794,9 +794,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c687a99397701b46a165cb3b602ebf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _weaponProjectile: {fileID: 1207455310397484510, guid: 4012b4fefd9fa054587ef0437ce3f8c4, type: 3}
+  defaultProjectile: {fileID: 1207455310397484510, guid: 4012b4fefd9fa054587ef0437ce3f8c4, type: 3}
+  collectionCheck: 1
   _movementSpeed: 500
   _jumpForce: 450
+  defaultCapacity: 15
+  maxSize: 15
 --- !u!1 &1398729383
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,6 +7,7 @@ public class DoorMovement : MonoBehaviour
     private Vector2 movement;
     [SerializeField] private float movementSpeed = 100f;
     [SerializeField] private float maxDistance = 30f;
+    public bool isDoorOpen = false;
     // Start is called before the first frame update
     void Start()
     {

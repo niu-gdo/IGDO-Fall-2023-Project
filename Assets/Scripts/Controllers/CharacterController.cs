@@ -32,4 +32,9 @@ public class CharacterController : MonoBehaviour
     {
         _rb.AddForce(Vector2.up * _jumpForce);
     }
+
+    public void onInteract(InputValue value)
+    {
+
+    }
 }

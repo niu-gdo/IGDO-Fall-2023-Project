@@ -22,7 +22,7 @@ public class CharacterController : MonoBehaviour
     [SerializeField] private float _jumpForce = 450f;
     [SerializeField] private float _bulletSpeed = 800f; //Speed of projectiles fired by current weapon; 800 is default value.
     [SerializeField] private float _throwForce = 400.0f; // Force of throwing a weapon
-    [SerializeField] private float _throwFriction = 10.0f; // Friction of model hitting ground
+    [SerializeField] private int _dropAngleRange = 200;
 
     // Start is called before the first frame update
     void Awake()
@@ -93,16 +93,25 @@ public class CharacterController : MonoBehaviour
     }
 
     public void OnDrop(InputValue value) {
-        if (!(_weaponHeld == 0)) {
+        if (_weaponHeld != 0) {
+            // Determine the position where the weapon will be instantiated
+            _projectileSpawnModifier = Vector2.right * _playerBoundingBox.size.x;
             GameObject droppedWeapon = Instantiate(_weaponProjectile, _rb.position + _projectileSpawnModifier, Quaternion.identity);
-            _projectileSpawnModifier.Normalize();
-            _projectileCollision = droppedWeapon.GetComponent<Rigidbody2D>();
 
+            // Get the Rigidbody of the dropped weapon
+            Rigidbody2D weaponRb = droppedWeapon.GetComponent<Rigidbody2D>();
 
-            //if (_weaponHeld != null) {
-                //Vector2 _throwDirection = transform.right.normalized;
-                //_thrownCollision.AddForce(_throwDirection * _throwForce);
-            //}
+            // Apply a slight upwards force combined with a side force
+            Vector2 dropDirection = (Vector2.right + Vector2.up * 0.5f).normalized;
+            weaponRb.AddForce(dropDirection * _throwForce);
+
+            // Optionally apply angular velocity to make it spin
+            weaponRb.angularVelocity = Random.Range(_dropAngleRange * -1, _dropAngleRange); // Adjust as needed
+
+            // Set the drag (air resistance) - this will make the weapon slow down in the air over time
+            weaponRb.drag = 0.5f; // Adjust this value as needed. More drag will make it slow down faster.
+
+            // Indicate that the player no longer holds a weapon
             _weaponHeld = 0;
         }
     }

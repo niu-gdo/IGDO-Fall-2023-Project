@@ -17,7 +17,7 @@ public class ReverseOnLimit : MonoBehaviour
     // Updates with the Physics
     void FixedUpdate()
     {
-        if (m_Joint.jointAngle >= 5 || m_Joint.jointAngle <= -5)
+        if (m_Joint.jointAngle >= 20 || m_Joint.jointAngle <= -20)
         {
             m_motor.motorSpeed *= -1;
             m_Joint.motor = m_motor;

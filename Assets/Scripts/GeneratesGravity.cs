@@ -14,14 +14,15 @@ public enum GravTypes
 /// <summary>
 /// Any entity with this component uses it's attached collider2d to hook itself into gravity appliers to provide a gravity influence
 /// </summary>
-public class Generates_Gravity : MonoBehaviour
+[RequireComponent(typeof(Collider2D))]
+public class GeneratesGravity : MonoBehaviour
 {
-    private Generates_Gravity _self;  // Generating a mutable reference to self for passing
     [SerializeField] private float _gravStrength = 20;  // The strength of the gravity force
     [SerializeField] private GravTypes _gravType = GravTypes.Linear;  // What mode is used to calculate gravity force
     [SerializeField] private float _gravAngle = 3 * math.PI / 2;  // Change the angle of the linear gravity force (allows angled gravity)
     [SerializeField] public int _gravPriority = 0;  // How important the field is (Applier has a setting to ignore lower levels)
     [SerializeField] private float _maxForce = 30;  // To stop insanely high forces when getting close to origin
+    private GeneratesGravity _self;  // Generating a mutable reference to self for passing
     
     /// <summary>
     /// Try to insert this collider into Applier if other has component
@@ -30,7 +31,7 @@ public class Generates_Gravity : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         // GameObject temp = other.gameObject;
-        if (other.TryGetComponent<Applies_Gravity>(out Applies_Gravity thing))
+        if (other.TryGetComponent<AppliesGravity>(out AppliesGravity thing))
         {
             thing.Set(ref _self);
         }
@@ -43,7 +44,7 @@ public class Generates_Gravity : MonoBehaviour
     /// <param name="other">The other entity that interacted with our collider</param>
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.TryGetComponent<Applies_Gravity>(out Applies_Gravity thing))
+        if (other.TryGetComponent<AppliesGravity>(out AppliesGravity thing))
         {
             thing.Reset(_self);
         }

@@ -14,19 +14,20 @@ public enum GravLevelUse
 /// <summary>
 /// Any entity that has this receiver can register hooks from Generators to ask for gravity calculations.
 /// </summary>
-public class Applies_Gravity : MonoBehaviour
+[RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
+public class AppliesGravity : MonoBehaviour
 {
+    // Keeps track of all gravity fields that we are currently touching
+    private List<GeneratesGravity> _appliedForces;
+    [SerializeField] private GravLevelUse _gravLevelUse = GravLevelUse.Sum;
     
     private Rigidbody2D _rb;   
-    // Keeps track of all gravity fields that we are currently touching
-    private List<Generates_Gravity> _appliedForces = new List<Generates_Gravity>();
-    [SerializeField] private GravLevelUse _gravLevelUse = GravLevelUse.Sum;
 
     /// <summary>
     /// Try to insert Generator reference into list of forces
     /// </summary>
     /// <param name="grav">Reference of the Generator connected to the gravity field collider</param>
-    public void Set(ref Generates_Gravity grav)
+    public void Set(ref GeneratesGravity grav)
     // Insert interacting field to list if it's new (Avoids double counting n stuff)
     {
         // Make sure it is new
@@ -49,7 +50,7 @@ public class Applies_Gravity : MonoBehaviour
     /// Remove Generator when out of range (detected by exiting collider)
     /// </summary>
     /// <param name="grav">Reference of Generator to be removed</param>
-    public void Reset(Generates_Gravity grav)
+    public void Reset(GeneratesGravity grav)
     // Removes Gravity field from tracking list
     {
         _appliedForces.RemoveAll(i => i.GetInstanceID() == grav.GetInstanceID());
@@ -62,6 +63,7 @@ public class Applies_Gravity : MonoBehaviour
     void Start() 
     {
         _rb = GetComponent<Rigidbody2D>();
+        _appliedForces = new List<GeneratesGravity>();
     }
 
     /// <summary>

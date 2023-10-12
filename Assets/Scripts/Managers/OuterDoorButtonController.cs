@@ -6,8 +6,9 @@ using UnityEngine;
 
 public class OuterDoorButtonController : MonoBehaviour
 {
-    public bool isPressed = false;
+    [SerializeField] private bool isPressed = false;
     // below code checks for when the variable isPressed changes, this can be used to connect different actions to the button
+    /*
     public bool isPressedChecker
     {
         get { return isPressed; }
@@ -21,27 +22,37 @@ public class OuterDoorButtonController : MonoBehaviour
     }
     public delegate void OnVariableChangeDelegate(bool newVal);
     public event OnVariableChangeDelegate OnVariableChange;
+    */
 
+    public bool isPressedChecker
+    {
+        get { return isPressed; }
+        set
+        {
+            if (isPressed != value)
+            {
+                isPressed = value;
+                Debug.Log("working?");
+                // Run some function or event here
+                
+            }
+        }
+    }
+    public delegate void OnVariableChangeDelegate(bool newVal);
+    public event OnVariableChangeDelegate OnVariableChange;
 
 
     [SerializeField] private GameObject[] connectedDoors;
     private void Awake()
     {
-        // add this code to any objects that need to subscribe and listen to event
+        // add the below code to any objects that need to subscribe and listen to event
         // componentWithEvent.OnVariableChange += VariableChangeHandler;
-        OnVariableChange += VariableChangeHandler;
+        //this.OnVariableChange += VariableChangeHandler;
     }
     // Start is called before the first frame update
     void Start()
     {
-        foreach (GameObject door in connectedDoors)
-        {
-            bool[] doorParts = door.GetComponents<bool>();
-            for(int i = 0; i < doorParts.Length; i++)
-            {
-                Debug.Log(doorParts[i]); // try to print list of bool variable names
-            }
-        }
+        //isPressedChecker = false;
     }
 
     // Update is called once per frame
@@ -50,11 +61,23 @@ public class OuterDoorButtonController : MonoBehaviour
         
     }
     // this is the code that runs whenever the variable changes
+    /*
     private void VariableChangeHandler(bool newVal)
     {
         foreach (GameObject door in connectedDoors)
         {
-            door.GetComponent<bool>();
+            Debug.Log("Is this working?" + door.GetComponent<DoorMovement>().isDoorOpen);
+            // gets the isDoorOpen bool variable from each door and changes its value to the opposite of what it currently is
+            bool isDoorOpen = door.GetComponent<DoorMovement>().isDoorOpen;
+            if(isDoorOpen == false)
+            {
+                door.GetComponent<DoorMovement>().isDoorOpen = true;
+            }
+            else
+            {
+                door.GetComponent<DoorMovement>().isDoorOpen = false;
+            }
         }
     }
+    */
 }

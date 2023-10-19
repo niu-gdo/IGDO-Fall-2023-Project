@@ -33,7 +33,7 @@ public class CharacterController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _rb.AddForce(_movement * _movementSpeed * Time.deltaTime);
+        _rb.AddForce(5*(_movement * _movementSpeed * Time.deltaTime));
     }
 
     private void TryFire()

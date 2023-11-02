@@ -9,7 +9,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private string _spawnRoomId = "";
     [SerializeField] private string _spawnEndpointId = "";
 
-    public static LevelManager Instance;
+    public static LevelManager Instance;    // Singleton instance
 
     public Room GetRoomById(string roomId)
     {
@@ -39,6 +39,7 @@ public class LevelManager : MonoBehaviour
 
     public bool TransitionToEndpoint(string roomId, string endpointId)
     {
+        // TODO: Consider caching player controller?
         CharacterController playerController = FindAnyObjectByType<CharacterController>();
         if (playerController == null) 
             return false;
@@ -85,6 +86,8 @@ public class LevelManager : MonoBehaviour
         {
             RoomDictionary.Add(room.Id, room);
         }
+
+        // TODO: Push a warning if no rooms are loaded.
     }
 
     /// <summary>
@@ -114,6 +117,7 @@ public class LevelManager : MonoBehaviour
 
     private void LoadDefaultRoom()
     {
+        // TODO: Use the first room in the dict if spawn room is invalid.
         TransitionToEndpoint(_spawnRoomId, _spawnEndpointId);
     }
 }

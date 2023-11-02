@@ -21,13 +21,16 @@ public class Room : MonoBehaviour
 
     private void Awake()
     {
+        InitializeEndpointDict();
+    }
+
+    private void InitializeEndpointDict()
+    {
         TransitionEndpoint[] endpoints = GetComponentsInChildren<TransitionEndpoint>();
 
         foreach (TransitionEndpoint endPoint in endpoints)
         {
-            Debug.Log($"Endpoint ID: {endPoint.Id}");
             roomEndpoints.Add(endPoint.Id, endPoint);
         }
     }
-
 }

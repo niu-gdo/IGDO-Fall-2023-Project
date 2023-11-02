@@ -37,4 +37,4 @@ MonoBehaviour:
   _Worldsprite: {fileID: 0}
   _playerSprite: {fileID: 0}
   _damage: 2
-  _projectilePosition: {fileID: 0}
+  _localProjectilePosition: {x: 0.7, y: 0.1}

@@ -1,4 +1,6 @@
-using System;
+using System.Collections;
+using System.Collections.Generic;
+using Unity.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Pool;
@@ -24,9 +26,14 @@ public class CharacterController : MonoBehaviour
     [SerializeField] private bool collectionCheck = true; //Throw an exception if we try to return an existing projectile, already in the pool
     [SerializeField] private float _movementSpeed = 500f;
     [SerializeField] private float _jumpForce = 450f;
+    [SerializeField] private float _pickupRange = .5f;
 
     [SerializeField] private Weapon _currentWeapon;
     [SerializeField] private GameObject _weaponView;
+
+    private enum FacingDirection{Right,Left}
+
+    [SerializeField] private FacingDirection _direction;
 
     // Start is called before the first frame update
     void Awake()
@@ -53,11 +60,13 @@ public class CharacterController : MonoBehaviour
 
         if(value.Get<Vector2>() == Vector2.right)
         {
-            transform.localScale = new(1, 1);
+            _direction = FacingDirection.Right;
         }else if(value.Get<Vector2>() == Vector2.left)
         {
-            transform.localScale = new(-1, 1);
+            _direction = FacingDirection.Left;
         }
+        
+        if(_weaponView != null) {UpdateWeaponView();}
     }
 
     public void OnJump(InputValue value)
@@ -67,9 +76,16 @@ public class CharacterController : MonoBehaviour
 
     public void OnInteract(InputValue value)
     {
+        Vector2 rayDir;
+        if(_direction == FacingDirection.Right)
+        {
+            rayDir = Vector2.right;
+        }else{
+            rayDir = Vector2.left;
+        }
         // Use a raycast to check if a pickup is in front of the player
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right,.5f);
-
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, rayDir,_pickupRange);
+        Debug.Log(hit.collider);
         //if pickup is in front of player, Pickup the wepon
         if (hit.collider != null 
             && hit.collider.GetComponent<PickupObject>() != null)
@@ -80,8 +96,8 @@ public class CharacterController : MonoBehaviour
 
     public void OnDrop(InputValue value)
     {
-        //make weapon pickup in world
-        MakeWeaponPickup();
+        //drop pickup object in world
+        DropItem();
 
         //remove weapon from being equiped
         _currentWeapon = null;
@@ -94,23 +110,27 @@ public class CharacterController : MonoBehaviour
     public void PickupWeapon(PickupObject obj)
     {
         //equip weapon in player
-        _currentWeapon = obj.wepaon;
+        _currentWeapon = obj._weapon;
+
         // create player sprite of wepaon
         _weaponView = new GameObject(
             _currentWeapon.name,
             typeof(SpriteRenderer)
         );
-        //set player weapon to my a child, and display
+
+        //set weaponView as a child of player, and display sprite
         _weaponView.transform.SetParent(this.transform);
-        _weaponView.transform.localPosition = new Vector2(0.7f, .1f);
         _weaponView.GetComponent<SpriteRenderer>().sprite = _currentWeapon._playerSprite;
 
+        UpdateWeaponView();
         //remove world object
         Destroy(obj.gameObject);
     }
 
-    private void MakeWeaponPickup()
+    private void DropItem()
     {
+        Vector2 dropDirection = transform.position;
+
         //create GameObject
         GameObject pickup = new GameObject(
             _currentWeapon.name,
@@ -119,15 +139,30 @@ public class CharacterController : MonoBehaviour
             typeof(PickupObject)
         );
         //set position in world
-        pickup.transform.position = new Vector2(
-            transform.position.x + 1,
-            transform.position.y
-         );
+        switch(_direction)
+        {
+            case FacingDirection.Right: dropDirection.x += 1; break;
+            case FacingDirection.Left: dropDirection.x -= 1; break;
+        }
+
+        pickup.transform.position = dropDirection;
 
         //setup function stuffs
-        pickup.GetComponent<PickupObject>().wepaon = _currentWeapon;
-        pickup.GetComponent<BoxCollider2D>().isTrigger = true;
-        pickup.GetComponent<SpriteRenderer>().sprite = _currentWeapon._Worldsprite;
+        pickup.GetComponent<PickupObject>().InitlizeObject(_currentWeapon);
     }
 
+    private void UpdateWeaponView()
+    {    
+        Vector3 pos = _currentWeapon._localViewPosition;
+
+        if(_direction == FacingDirection.Right)
+        {   
+            _weaponView.transform.localPosition = pos;
+            _weaponView.transform.localScale = new(1,1);
+            
+        }else{
+            _weaponView.transform.localPosition = new(pos.x*-1,pos.y,0);
+            _weaponView.transform.localScale = new(-1,1);
+        }
+    }
 }

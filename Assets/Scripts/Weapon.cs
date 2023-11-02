@@ -10,7 +10,7 @@ public abstract class Weapon : ScriptableObject
     //damage for projectile
     [SerializeField] private int _damage;
     //spawn point relative to player to spawn projectile
-    [SerializeField] private Transform _projectilePosition;
+    [SerializeField] public Vector2 _localProjectilePosition,_localViewPosition;
     public abstract void Use();
 
 }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Pistol
   m_EditorClassIdentifier: 
   _description: 'a colt 1911 '
-  _Worldsprite: {fileID: 0}
-  _playerSprite: {fileID: 0}
+  _Worldsprite: {fileID: 21300000, guid: 2fb4f2d1f46046d428c122256115903a, type: 3}
+  _playerSprite: {fileID: 21300000, guid: 2fb4f2d1f46046d428c122256115903a, type: 3}
   _damage: 2
-  _projectilePosition: {fileID: 0}
+  _localProjectilePosition: {x: 0.7, y: 0.1}

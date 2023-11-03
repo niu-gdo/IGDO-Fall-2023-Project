@@ -6,7 +6,7 @@ using UnityEngine;
 public class DoorMovement : MonoBehaviour
 {
     private Vector2 movement;
-    [SerializeField] private float movementSpeed = 100f;
+    [SerializeField] private float movementSpeed = 5f;
     [SerializeField] private float maxDistance = 30f;
     public bool isDoorOpen = false;
     private Vector2 closedPosition;
@@ -16,7 +16,6 @@ public class DoorMovement : MonoBehaviour
     private void Awake()
     {
         closedPosition = transform.position;
-        openPosition = transform.GetChild(0).transform.position;
     }
     void Start()
     {
@@ -26,14 +25,14 @@ public class DoorMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        openPosition = transform.GetChild(0).transform.position;
     }
 
     private void FixedUpdate()
     {
         if(isDoorOpen && (Vector2)transform.position != openPosition)
         {
-            transform.position = Vector2.Lerp(transform.position, openPosition, Time.deltaTime * movementSpeed);
+            transform.position = Vector2.Lerp(transform.position, openPosition, Time.fixedDeltaTime * movementSpeed);
         }
         if(!isDoorOpen && (Vector2)transform.position != closedPosition)
         {

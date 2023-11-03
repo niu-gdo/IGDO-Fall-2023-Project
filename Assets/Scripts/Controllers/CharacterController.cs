@@ -1,13 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class CharacterController : MonoBehaviour
 {
+    public Action OnJumpInput;
+    public Action OnShootInput;
+
+    public float HorizontalInput { get => _movement.x; }
+
     [SerializeField] private GameObject _weaponProjectile; //Basic projectile prefab, spawned when player fires.
     private Rigidbody2D _rb;
     
+     
+
     private Vector2 _movement;
     private float _fireRate = 0; //Used to control weapon firing speed.
     private Vector2 _projectileSpawnModifier; //The offset for spawning projectiles, and the direction they should move in after being fired.
@@ -71,18 +77,19 @@ public class CharacterController : MonoBehaviour
 
     private void OnShoot(InputValue value)
     {
+        OnShootInput?.Invoke();
         //If the button is pressed, flip to true. Once the button is released, flip to false.
-        _isTriggerHeld = !_isTriggerHeld;
+        //_isTriggerHeld = !_isTriggerHeld;
     }
 
     public void OnMove(InputValue value)
     {
-
         _movement = value.Get<Vector2>();
     }
 
     public void OnJump(InputValue value)
     {
-        _rb.AddForce(Vector2.up * _jumpForce);
+        OnJumpInput?.Invoke();
+        //_rb.AddForce(Vector2.up * _jumpForce);
     }
 }

@@ -2,8 +2,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// 
+/// A singleton management class responsible for giving access to Level Management and
+/// information.
 /// </summary>
+///  
+/// Implemented as a singleton, this class' global instance can be accessed via
+/// LevelManager.Instance from any class.
 public class LevelManager : MonoBehaviour
 {
     [SerializeField, Tooltip("ID of the default room to spawn in.")]
@@ -43,7 +47,7 @@ public class LevelManager : MonoBehaviour
     /// <returns>Endpoint with matching Id, NULL otherwise.</returns>
     public TransitionEndpoint FindEndpoint(Room room, string endpointId)
     {
-        if (room.roomEndpoints.TryGetValue(endpointId, out TransitionEndpoint foundEndpoint))
+        if (room._roomEndpoints.TryGetValue(endpointId, out TransitionEndpoint foundEndpoint))
         {
             return foundEndpoint;
         }

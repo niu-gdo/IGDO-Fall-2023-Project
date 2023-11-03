@@ -136,7 +136,7 @@ Remember that people in the organization will use your pull request to track cha
 > 
 > Here's a GIF of what it looks like in a scene:
 >
-> ![animated GIF of jetpack](https://github.com/niu-gdo/IGDO-Fall-2023-Project/assets/59938457/a2d46b37-c6b2-41b9-a965-a42a2018b7ee)>
+> ![animated GIF of jetpack](https://github.com/niu-gdo/IGDO-Fall-2023-Project/assets/59938457/a2d46b37-c6b2-41b9-a965-a42a2018b7ee)
 >
 > We had to reticulate some splines in order to sync the thrusters with the retroencabulators, but we're planning on addressing that in the next PR.
 > 

@@ -47,9 +47,16 @@ public class LevelManager : MonoBehaviour
     /// <returns>Endpoint with matching Id, NULL otherwise.</returns>
     public TransitionEndpoint FindEndpoint(Room room, string endpointId)
     {
-        if (room._roomEndpoints.TryGetValue(endpointId, out TransitionEndpoint foundEndpoint))
+        if (room == null)
+        { 
+            Debug.LogWarning($"LevelManager::FindEndpoint - Could not find room to query endpoint upon");
+            return null;
+        }
+        
+        TransitionEndpoint targetEndpoint = room.FindEndpoint(endpointId);
+        if (targetEndpoint != null)
         {
-            return foundEndpoint;
+            return targetEndpoint;
         }
         else
         {
@@ -98,6 +105,11 @@ public class LevelManager : MonoBehaviour
         return path;
     }
 
+    /// <summary>
+    /// Find the endpoint given room and endpoint Ids, and attempt to load and move the
+    /// player to said room.
+    /// </summary>
+    /// <returns>True if the transition was successful.</returns>
     public bool TransitionToEndpoint(string roomId, string endpointId)
     {
         // TODO: Consider caching player controller?

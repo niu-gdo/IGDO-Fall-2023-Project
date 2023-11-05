@@ -14,6 +14,19 @@ public class Room : MonoBehaviour
     private readonly Dictionary<string, TransitionEndpoint> _roomEndpoints = new Dictionary<string, TransitionEndpoint>();
 
     /// <summary>
+    /// Attempt to find an endpoint in this room by a given ID.
+    /// </summary>
+    /// <param name="endpointId">Id of the endpoint to query for.</param>
+    /// <returns>The target endpoint, or NULL if not found.</returns>
+    public TransitionEndpoint FindEndpoint(string endpointId)
+    {
+        if (_roomEndpoints.TryGetValue(endpointId, out TransitionEndpoint targetEndpoint))
+            return targetEndpoint;
+
+        return null;
+    }
+
+    /// <summary>
     /// Prepare this room for being played in.
     /// </summary>
     public void LoadRoom()

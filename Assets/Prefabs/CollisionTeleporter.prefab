@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3823430212939844183}
   - component: {fileID: 7242080980300205269}
   m_Layer: 0
-  m_Name: Teleporter
+  m_Name: CollisionTeleporter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

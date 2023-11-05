@@ -680,7 +680,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7593b253c81e6b34fb3293478f6303bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Id: RoomC
+  _id: 
 --- !u!1001 &544195712
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1338,7 +1338,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7593b253c81e6b34fb3293478f6303bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Id: RoomB
+  _id: 
 --- !u!1001 &953175955
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1590,7 +1590,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7593b253c81e6b34fb3293478f6303bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Id: RoomA
+  _id: 
 --- !u!1 &1506683366
 GameObject:
   m_ObjectHideFlags: 0

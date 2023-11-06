@@ -20,7 +20,7 @@ public class CharacterItemHandler : MonoBehaviour
 
         Vector3 pos = _currentWeapon._localViewPosition;
 
-        if (GetComponent<CharacterController>().GetDirection() == FacingDirection.Right)
+        if (GetComponent<CharacterController>().Direction == FacingDirection.Right)
         {
             _weaponView.transform.localPosition = pos;
             _weaponView.transform.localScale = new(1, 1);
@@ -57,7 +57,7 @@ public class CharacterItemHandler : MonoBehaviour
         Vector2 dropDirection = transform.position;
         
         //get position in world to spawn pickup
-        switch (GetComponent<CharacterController>().GetDirection())
+        switch (GetComponent<CharacterController>().Direction)
         {
             case FacingDirection.Right: dropDirection.x += 1; break;
             case FacingDirection.Left: dropDirection.x -= 1; break;

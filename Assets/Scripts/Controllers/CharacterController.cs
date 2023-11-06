@@ -1,10 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+/// <summary>
+/// Processes and propagates player input.
+/// </summary>
 public class CharacterController : MonoBehaviour
 {
+    public Action OnJumpInput;
+    public Action<bool> OnTriggerHeld;  // Propagates if the shoot button is held
+    public float HorizontalInput { get => _movement.x; }
+
     public CharacterItemHandler _characterItemHandler
     {
         get
@@ -14,44 +20,13 @@ public class CharacterController : MonoBehaviour
         private set { }
     }
 
-    private Rigidbody2D _rb;
     private Vector2 _movement;
 
-    [SerializeField] private float _movementSpeed = 500f;
-    [SerializeField] private float _jumpForce = 450f;
     [SerializeField] private float _pickupRange = .5f;
 
-    [SerializeField] private FacingDirection _direction;
+    private FacingDirection _direction = FacingDirection.Right;
 
-    // Start is called before the first frame update
-    void Awake()
-    {
-        _rb = GetComponent<Rigidbody2D>();
-    }
-
-    private void FixedUpdate()
-    {
-        _rb.AddForce(_movement * _movementSpeed * Time.deltaTime);
-    }
-
-    public void OnMove(InputValue value)
-    {
-        _movement = value.Get<Vector2>();
-
-        if(value.Get<Vector2>() == Vector2.right)
-        {
-            _direction = FacingDirection.Right;
-        }else if(value.Get<Vector2>() == Vector2.left)
-        {
-            _direction = FacingDirection.Left;
-        }
-        _characterItemHandler.UpdateItemView();
-    }
-
-    public void OnJump(InputValue value)
-    {
-        _rb.AddForce(Vector2.up * _jumpForce);
-    }
+    public FacingDirection Direction{ get => _direction; }
 
     public void OnInteract(InputValue value)
     {
@@ -78,8 +53,26 @@ public class CharacterController : MonoBehaviour
 
     }
 
-    public FacingDirection GetDirection()
+
+    private void ProcessMovement(InputValue value)
     {
-        return _direction;
+        _movement = value.Get<Vector2>();
+
+        if (value.Get<Vector2>() == Vector2.right)
+        {
+            _direction = FacingDirection.Right;
+        }
+        else if (value.Get<Vector2>() == Vector2.left)
+        {
+            _direction = FacingDirection.Left;
+        }
+        _characterItemHandler.UpdateItemView();
     }
+
+
+    public void OnShoot(InputValue value) => OnTriggerHeld?.Invoke(value.isPressed);
+    public void OnMove(InputValue value) => ProcessMovement(value);
+   
+
+    public void OnJump(InputValue value) => OnJumpInput?.Invoke();
 }

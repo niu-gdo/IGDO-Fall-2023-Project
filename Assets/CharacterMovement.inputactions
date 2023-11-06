@@ -40,6 +40,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+				},
+				{
+                    "name": "Shoot",
+                    "type": "Value",
+                    "id": "4bfba374-4b36-4ed0-89b0-94f4ebb9983f",
+                    "expectedControlType": "Touch",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -64,28 +73,6 @@
                     "action": "Move",
                     "isComposite": true,
                     "isPartOfComposite": false
-                },
-                {
-                    "name": "up",
-                    "id": "e2062cb9-1b15-46a2-838c-2f8d72a0bdd9",
-                    "path": "<Keyboard>/w",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "up",
-                    "id": "8180e8bd-4097-4f4e-ab88-4523101a6ce9",
-                    "path": "<Keyboard>/upArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": true
                 },
                 {
                     "name": "down",
@@ -232,6 +219,7 @@
                 },
                 {
                     "name": "",
+<<<<<<< HEAD
                     "id": "bb600003-9457-4e4c-96b4-1db3cd82427d",
                     "path": "<Keyboard>/e",
                     "interactions": "",
@@ -249,6 +237,14 @@
                     "processors": "",
                     "groups": "",
                     "action": "Drop",
+=======
+                    "id": "878a8e40-2a34-400a-9f24-acf3127b8c2a",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Shoot",
+>>>>>>> main
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

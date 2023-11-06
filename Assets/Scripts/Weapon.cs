@@ -6,7 +6,7 @@ public abstract class Weapon : ScriptableObject
 {
     [SerializeField] private string _description;
     //sprite of weapon in world and on player
-    public Sprite _Worldsprite,_playerSprite;
+    public Sprite _worldSprite, _playerSprite;
     //damage for projectile
     [SerializeField] private int _damage;
     //spawn point relative to player to spawn projectile

@@ -24,9 +24,18 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Shoot",
+                    "type": "Value",
+                    "id": "4bfba374-4b36-4ed0-89b0-94f4ebb9983f",
+                    "expectedControlType": "Touch",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
                     "name": "Interact",
                     "type": "Button",
-                    "id": "55324a29-0447-4787-9db0-5e17f546e431",
+                    "id": "95bb932f-8ec0-4690-bf37-41ccb97cf449",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -35,7 +44,7 @@
                 {
                     "name": "Drop",
                     "type": "Button",
-                    "id": "b61a6f81-5a26-4d11-9885-28e976a3ea83",
+                    "id": "3bd8b28a-c277-468e-be2e-7d6460b724a9",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -210,7 +219,18 @@
                 },
                 {
                     "name": "",
-                    "id": "bb600003-9457-4e4c-96b4-1db3cd82427d",
+                    "id": "878a8e40-2a34-400a-9f24-acf3127b8c2a",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f2da7b5a-67a2-4b56-9cfb-73a97a1ae22b",
                     "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
@@ -221,7 +241,7 @@
                 },
                 {
                     "name": "",
-                    "id": "a7d5bbde-23b5-4e87-bd3a-6e5731e6d5cf",
+                    "id": "18e89625-60b8-4574-a385-94c3334850b7",
                     "path": "<Keyboard>/t",
                     "interactions": "",
                     "processors": "",

@@ -4,6 +4,10 @@ For Fall 2023's project, we will be creating a 2D platform project using Unity.
 This repository serves as the base project for getting started. Information will
 be added here as we finalize the project requirements.
 
+## Contributing
+
+Please review our [contributing guidelines](/docs/CONTRIBUTING.md) before making a pull request.
+
 ## System Requirements
 
 You will need a PC with Unity 2022 LTS installed in order to open this project.

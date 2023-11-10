@@ -7,52 +7,25 @@ using UnityEngine;
 public class OuterDoorButtonController : MonoBehaviour
 {
     [SerializeField] private bool isPressed = false;
-    // below code checks for when the variable isPressed changes, this can be used to connect different actions to the button
-    /*
-    public bool isPressedChecker
-    {
-        get { return isPressed; }
-        set
-        {
-            if (isPressed == value) return;
-            isPressed = value;
-            if (OnVariableChange != null)
-                OnVariableChange(isPressed);
-        }
-    }
-    public delegate void OnVariableChangeDelegate(bool newVal);
-    public event OnVariableChangeDelegate OnVariableChange;
-    */
-
-    public bool isPressedChecker
-    {
-        get { return isPressed; }
-        set
-        {
-            if (isPressed != value)
-            {
-                isPressed = value;
-                Debug.Log("working?");
-                // Run some function or event here
-                
-            }
-        }
-    }
-    public delegate void OnVariableChangeDelegate(bool newVal);
-    public event OnVariableChangeDelegate OnVariableChange;
-
-
+    private bool oppositeOfIsPressed;
     [SerializeField] private GameObject[] connectedDoors;
     private void Awake()
     {
-        // add the below code to any objects that need to subscribe and listen to event
-        // componentWithEvent.OnVariableChange += VariableChangeHandler;
-        //this.OnVariableChange += VariableChangeHandler;
+        // if isPressed is true opposite is set to false
+        if(isPressed)
+        {
+            oppositeOfIsPressed = false;
+        }
+        // if iPressed is false opposite is set to true
+        else
+        {
+            oppositeOfIsPressed = true;
+        }
     }
     // Start is called before the first frame update
     void Start()
     {
-        //isPressedChecker = false;
+        
     }
 
     // Update is called once per frame
@@ -60,16 +33,30 @@ public class OuterDoorButtonController : MonoBehaviour
     {
         
     }
-    // this is the code that runs whenever the variable changes
-    /*
-    private void VariableChangeHandler(bool newVal)
+
+    private void FixedUpdate()
+    {
+        // if isPressed becomes true 
+        if (isPressed && oppositeOfIsPressed)
+        {
+            WhenIsPressedChanges();
+            oppositeOfIsPressed = false;
+        }
+        // if isPressed becomes false
+        else if (!isPressed && !oppositeOfIsPressed)
+        {
+            WhenIsPressedChanges();
+            oppositeOfIsPressed = true;
+        }
+    }
+
+    private void WhenIsPressedChanges()
     {
         foreach (GameObject door in connectedDoors)
         {
-            Debug.Log("Is this working?" + door.GetComponent<DoorMovement>().isDoorOpen);
             // gets the isDoorOpen bool variable from each door and changes its value to the opposite of what it currently is
             bool isDoorOpen = door.GetComponent<DoorMovement>().isDoorOpen;
-            if(isDoorOpen == false)
+            if (isDoorOpen == false)
             {
                 door.GetComponent<DoorMovement>().isDoorOpen = true;
             }
@@ -79,5 +66,5 @@ public class OuterDoorButtonController : MonoBehaviour
             }
         }
     }
-    */
+    
 }

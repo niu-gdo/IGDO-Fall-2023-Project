@@ -1126,8 +1126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 180b7ea2c7eaed74d82b872ad4bc1a36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 100
-  maxDistance: 30
+  movementSpeed: 1
   isDoorOpen: 0
 --- !u!1 &1393113067
 GameObject:
@@ -1521,8 +1520,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 180b7ea2c7eaed74d82b872ad4bc1a36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 100
-  maxDistance: 30
+  movementSpeed: 1
   isDoorOpen: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

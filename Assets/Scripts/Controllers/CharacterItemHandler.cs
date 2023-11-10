@@ -6,30 +6,30 @@ public class CharacterItemHandler : MonoBehaviour
 {
 
     [SerializeField] private Weapon _currentWeapon;
+    [SerializeField] private bool   _isHoldingItem;
+    [SerializeField] private Vector3 _localItemPosition;
 
-    [SerializeField, Tooltip("Child Gameobject of Player that shows currentWeapon's sprite")]
-    private GameObject _weaponView;
+    [SerializeField, Tooltip("Child Gameobject of Player that shows currentWeapon's sprite or gameobject")]
+    private GameObject _itemView;
 
 
-    public void UpdateItemView()
+    public void UpdateItemView(Vector3 pos)
     {
-        if (_weaponView == null)
+        if (_itemView == null)
         {
             return;
         }
 
-        Vector3 pos = _currentWeapon._localViewPosition;
-
         if (GetComponent<CharacterController>().Direction == FacingDirection.Right)
         {
-            _weaponView.transform.localPosition = pos;
-            _weaponView.transform.localScale = new(1, 1);
+            _itemView.transform.localPosition = pos;
+            _itemView.transform.localScale = new(1, 1);
 
         }
         else
         {
-            _weaponView.transform.localPosition = new(pos.x * -1, pos.y, 0);
-            _weaponView.transform.localScale = new(-1, 1);
+            _itemView.transform.localPosition = new(pos.x * -1, pos.y, 0);
+            _itemView.transform.localScale = new(-1, 1);
         }
     }
 
@@ -39,18 +39,28 @@ public class CharacterItemHandler : MonoBehaviour
         _currentWeapon = weapon;
 
         // create player sprite of wepaon
-        _weaponView = new GameObject(
+        _itemView = new GameObject(
             _currentWeapon.name,
             typeof(SpriteRenderer)
         );
 
         //set weaponView as a child of player, and display sprite
-        _weaponView.transform.SetParent(this.transform);
-        _weaponView.GetComponent<SpriteRenderer>().sprite = _currentWeapon._playerSprite;
+        _itemView.transform.SetParent(this.transform);
+        _itemView.GetComponent<SpriteRenderer>().sprite = _currentWeapon._playerSprite;
 
-        UpdateItemView();
+        UpdateItemView(_currentWeapon._localViewPosition);
     }
 
+    public void PickupOther(GameObject obj)
+    {
+        //set gameobject to _itemView
+        _itemView = obj;
+
+        //parent _itemView
+        _itemView.transform.SetParent(this.transform);
+
+        UpdateItemView(_localItemPosition);
+    }
 
     public void DropItem()
     {
@@ -69,7 +79,7 @@ public class CharacterItemHandler : MonoBehaviour
         _currentWeapon = null;
 
         //remove player sprite of weapon
-        Destroy(_weaponView);
+        Destroy(_itemView);
 
     }
 }

@@ -4,8 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - outerDoorTop
-  - outerDoorBottom
+  - Button
   layers:
   - Default
   - TransparentFX

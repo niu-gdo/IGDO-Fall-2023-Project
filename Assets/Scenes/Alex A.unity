@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 46618662}
   m_Layer: 0
   m_Name: Door Open Position
-  m_TagString: outerDoorBottom
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -218,9 +218,10 @@ GameObject:
   - component: {fileID: 353244084}
   - component: {fileID: 353244083}
   - component: {fileID: 353244085}
+  - component: {fileID: 353244086}
   m_Layer: 0
   m_Name: Button
-  m_TagString: Untagged
+  m_TagString: Button
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -305,9 +306,44 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPressed: 0
-  connectedDoors:
-  - {fileID: 999498392}
+  _connectedDoors:
   - {fileID: 1983193219}
+  - {fileID: 999498392}
+--- !u!58 &353244086
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 353244082}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 2
 --- !u!1 &356603132
 GameObject:
   m_ObjectHideFlags: 0
@@ -996,7 +1032,7 @@ GameObject:
   - component: {fileID: 999498396}
   m_Layer: 0
   m_Name: Door Bottom
-  m_TagString: outerDoorBottom
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1126,7 +1162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 180b7ea2c7eaed74d82b872ad4bc1a36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 1
+  _movementSpeed: 1
   isDoorOpen: 0
 --- !u!1 &1393113067
 GameObject:
@@ -1140,7 +1176,7 @@ GameObject:
   - component: {fileID: 1393113071}
   m_Layer: 0
   m_Name: Door Open Position
-  m_TagString: outerDoorTop
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1390,7 +1426,7 @@ GameObject:
   - component: {fileID: 1983193223}
   m_Layer: 0
   m_Name: Door Top
-  m_TagString: outerDoorTop
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1520,7 +1556,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 180b7ea2c7eaed74d82b872ad4bc1a36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 1
+  _movementSpeed: 1
   isDoorOpen: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

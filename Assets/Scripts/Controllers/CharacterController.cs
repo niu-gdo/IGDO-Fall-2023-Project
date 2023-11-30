@@ -66,7 +66,7 @@ public class CharacterController : MonoBehaviour
         {
             _direction = FacingDirection.Left;
         }
-        _characterItemHandler.UpdateItemView(new());
+        _characterItemHandler.UpdateItemView();
     }
 
 

@@ -6,35 +6,44 @@ public class CharacterItemHandler : MonoBehaviour
 {
 
     [SerializeField] private Weapon _currentWeapon;
-    [SerializeField] private bool   _isHoldingItem;
-    [SerializeField] private Vector3 _localItemPosition;
-
     [SerializeField, Tooltip("Child Gameobject of Player that shows currentWeapon's sprite or gameobject")]
     private GameObject _itemView;
+    [SerializeField] private bool   _isHoldingItem;
+    [SerializeField] private Vector2 _localItemPosition;
 
-
-    public void UpdateItemView(Vector3 pos)
+    private FixedJoint2D _joint
     {
+        get { return GetComponent<FixedJoint2D>(); }
+    }
+
+    public void UpdateItemView()
+    {
+        Vector2 position;
+
         if (_itemView == null)
         {
             return;
         }
 
+        position = (_currentWeapon != null) ? _currentWeapon._localViewPosition : _localItemPosition;
+
         if (GetComponent<CharacterController>().Direction == FacingDirection.Right)
         {
-            _itemView.transform.localPosition = pos;
+            _itemView.transform.localPosition = position;
             _itemView.transform.localScale = new(1, 1);
 
         }
         else
         {
-            _itemView.transform.localPosition = new(pos.x * -1, pos.y, 0);
+            _itemView.transform.localPosition = new(position.x * -1, position.y, 0);
             _itemView.transform.localScale = new(-1, 1);
         }
     }
 
-    public void PickupWeapon(Weapon weapon)
+    public void PickupWeapons(Weapon weapon)
     {
+        _isHoldingItem = true;
+
         //equip weapon in player
         _currentWeapon = weapon;
 
@@ -48,22 +57,35 @@ public class CharacterItemHandler : MonoBehaviour
         _itemView.transform.SetParent(this.transform);
         _itemView.GetComponent<SpriteRenderer>().sprite = _currentWeapon._playerSprite;
 
-        UpdateItemView(_currentWeapon._localViewPosition);
+        UpdateItemView();
     }
 
-    public void PickupOther(GameObject obj)
+    public void PickupObject(GameObject obj)
     {
+        _isHoldingItem = true;
+
         //set gameobject to _itemView
         _itemView = obj;
 
         //parent _itemView
         _itemView.transform.SetParent(this.transform);
 
-        UpdateItemView(_localItemPosition);
+        _joint.connectedBody = _itemView.GetComponent<Rigidbody2D>();
+
+        _joint.enabled = true;
+
+        UpdateItemView();
     }
 
     public void DropItem()
     {
+        if(!_isHoldingItem)
+        {
+            return;
+        }
+
+        _isHoldingItem = false;
+
         Vector2 dropDirection = transform.position;
         
         //get position in world to spawn pickup
@@ -73,13 +95,40 @@ public class CharacterItemHandler : MonoBehaviour
             case FacingDirection.Left: dropDirection.x -= 1; break;
         }
 
-        PickupObject.CreatePickup(dropDirection,_currentWeapon);
+        if(_currentWeapon != null)
+        {
+            DropWeapon(dropDirection);
+        }
+        else
+        {
+            DropOther();
+        }
+
+    }
+
+    private void DropWeapon(Vector2 direction)
+    {
+        PickupWeapon.CreatePickup(direction, _currentWeapon);
 
         //remove weapon from being equiped
         _currentWeapon = null;
 
         //remove player sprite of weapon
         Destroy(_itemView);
+    }
 
+    private void DropOther()
+    {
+        _joint.connectedBody = null;
+
+        _joint.enabled = false;
+
+        //parent _itemView
+        _itemView.transform.SetParent(null);
+    }
+
+    private void OnJointBreak2D(Joint2D joint)
+    {
+        DropOther();
     }
 }

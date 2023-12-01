@@ -27,7 +27,8 @@ public class CharacterController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Button")
+        // checks if the object of the trigger area has the "Button" tag. will cause problems if player is within radius of multiple buttons at the same time
+        if (collision.tag == "Button")
         {
             _touchingButton = true;
             _touchingButtonGameObject = collision.gameObject;
@@ -54,6 +55,7 @@ public class CharacterController : MonoBehaviour
 
     public void OnInteract(InputValue value)
     {
+        // if touching a button will change the buttons is pressed value to the opposite of what it currently is
         if (_touchingButton)
         {
             if (_touchingButtonGameObject.GetComponent<OuterDoorButtonController>().isPressed)

@@ -30,13 +30,15 @@ public class CharacterItemHandler : MonoBehaviour
         if (GetComponent<CharacterController>().Direction == FacingDirection.Right)
         {
             _itemView.transform.localPosition = position;
-            _itemView.transform.localScale = new(1, 1);
+
+            _itemView.transform.localScale = new(Mathf.Abs(_itemView.transform.localScale.x), _itemView.transform.localScale.y);
 
         }
         else
         {
             _itemView.transform.localPosition = new(position.x * -1, position.y, 0);
-            _itemView.transform.localScale = new(-1, 1);
+
+            _itemView.transform.localScale = new(Mathf.Abs(_itemView.transform.localScale.x)*-1, _itemView.transform.localScale.y);
         }
     }
 

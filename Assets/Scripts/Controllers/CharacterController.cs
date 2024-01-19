@@ -53,7 +53,6 @@ public class CharacterController : MonoBehaviour
 
     }
 
-
     private void ProcessMovement(InputValue value)
     {
         _movement = value.Get<Vector2>();

@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+[RequireComponent(typeof(CharacterController))]
 public class CharacterItemHandler : MonoBehaviour
 {
 
@@ -11,10 +13,7 @@ public class CharacterItemHandler : MonoBehaviour
     [SerializeField] private bool   _isHoldingItem;
     [SerializeField] private Vector2 _localItemPosition;
 
-    private FixedJoint2D _joint
-    {
-        get { return GetComponent<FixedJoint2D>(); }
-    }
+    [SerializeField] private float JumpPenalty = 0;
 
     public void UpdateItemView()
     {
@@ -74,8 +73,13 @@ public class CharacterItemHandler : MonoBehaviour
 
         Destroy(_itemView.GetComponent<Rigidbody2D>());
 
-
         UpdateItemView();
+
+        if(TryGetComponent<CharacterMovement>(out CharacterMovement move))
+        {
+            move.ChangeJumpMod(-JumpPenalty);
+            move.ChangeSpeedMod(-250);
+        }
     }
 
     public void DropItem()
@@ -126,6 +130,12 @@ public class CharacterItemHandler : MonoBehaviour
         _itemView.AddComponent<Rigidbody2D>();
 
         _itemView = null;
+
+        if (TryGetComponent<CharacterMovement>(out CharacterMovement move))
+        {
+            move.ChangeJumpMod(0);
+            move.ChangeSpeedMod(0);
+        }
     }
 
     private void OnJointBreak2D(Joint2D joint)

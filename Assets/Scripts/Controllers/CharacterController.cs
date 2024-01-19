@@ -41,9 +41,9 @@ public class CharacterController : MonoBehaviour
         //Debug.Log(hit.collider);
 
         //if interacable is found, interact with it
-        if (hit.collider != null && hit.collider.TryGetComponent<IInteractible>(out IInteractible interactible))
+        if (hit.collider != null && hit.collider.CompareTag("Pickup"))
         {
-            interactible.Interaction(this);
+            _characterItemHandler.PickupObject(hit.collider.gameObject);
         }
     }
 

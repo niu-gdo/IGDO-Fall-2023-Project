@@ -70,9 +70,8 @@ public class CharacterItemHandler : MonoBehaviour
         //parent _itemView
         _itemView.transform.SetParent(this.transform);
 
-        _joint.connectedBody = _itemView.GetComponent<Rigidbody2D>();
+        Destroy(_itemView.GetComponent<Rigidbody2D>());
 
-        _joint.enabled = true;
 
         UpdateItemView();
     }
@@ -119,12 +118,12 @@ public class CharacterItemHandler : MonoBehaviour
 
     private void DropOther()
     {
-        _joint.connectedBody = null;
-
-        _joint.enabled = false;
-
         //parent _itemView
         _itemView.transform.SetParent(null);
+
+        _itemView.AddComponent<Rigidbody2D>();
+
+        _itemView = null;
     }
 
     private void OnJointBreak2D(Joint2D joint)

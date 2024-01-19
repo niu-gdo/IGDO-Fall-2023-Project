@@ -28,7 +28,7 @@ public class PickupWeapon : MonoBehaviour, IInteractible
     public static void CreatePickup(Vector2 spawnLocation, Weapon weapon)
     {
         //create GameObject
-        GameObject pickup = new GameObject(
+        GameObject pickup = new(
             weapon.name,
             typeof(BoxCollider2D),
             typeof(SpriteRenderer),

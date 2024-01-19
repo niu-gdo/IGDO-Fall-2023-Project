@@ -44,11 +44,18 @@ public class CharacterMovement : MonoBehaviour
         _rb.AddForce((Vector2.up * (_jumpForce+_jumpModAmt)));
     }
 
+    /// <summary>
+    /// Set the Modifer for JumpFoce
+    /// </summary>
+    /// <param name="amt">Amt to set JumpForce Mod to</param>
     public void ChangeJumpMod(float amt)
     {
         _jumpModAmt = amt;
     }
-
+    /// <summary>
+    /// Set the Modifer for movementSpeed
+    /// </summary>
+    /// <param name="amt">Amt to set movementSpeed Mod to</param>
     public void ChangeSpeedMod(float amt)
     {
         _speedMod = amt;

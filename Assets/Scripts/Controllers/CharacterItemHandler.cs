@@ -70,7 +70,7 @@ public class CharacterItemHandler : MonoBehaviour
 
         //parent _itemView
         _itemView.transform.SetParent(this.transform);
-
+        Destroy(_itemView.GetComponent<AppliesGravity>());
         Destroy(_itemView.GetComponent<Rigidbody2D>());
 
         UpdateItemView();
@@ -127,7 +127,7 @@ public class CharacterItemHandler : MonoBehaviour
         //parent _itemView
         _itemView.transform.SetParent(null);
 
-        _itemView.AddComponent<Rigidbody2D>();
+        _itemView.AddComponent<AppliesGravity>();
 
         _itemView = null;
 

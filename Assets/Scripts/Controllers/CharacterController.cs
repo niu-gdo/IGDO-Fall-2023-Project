@@ -18,7 +18,10 @@ public class CharacterController : MonoBehaviour
 
     private Vector2 _movement;
 
+ 
+
     public void OnShoot(InputValue value) => OnTriggerHeld?.Invoke(value.isPressed);
     public void OnMove(InputValue value) => _movement = value.Get<Vector2>();
+
     public void OnJump(InputValue value) => OnJumpInput?.Invoke();
 }

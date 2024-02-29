@@ -1,9 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Pool;
 
+/// <summary>
+/// Processes and propagates player input.
+/// </summary>
 public class CharacterController : MonoBehaviour
 {
     private Rigidbody2D _rb;

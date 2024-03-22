@@ -1,4 +1,4 @@
 public interface IInteractible 
 {
-    void Interaction(CharacterController characterController);
+    void Interaction(CharacterItemHandler characterController);
 }

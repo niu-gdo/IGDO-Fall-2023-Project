@@ -5,9 +5,9 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public class PickupObject : MonoBehaviour, IInteractible
 {
-    public void Interaction(CharacterController c)
+    public void Interaction(CharacterItemHandler c)
     {
 
-        c._characterItemHandler.PickupObject(this.gameObject);
+        c.PickupObject(this.gameObject);
     }
 }

@@ -44,10 +44,10 @@ public class PickupWeapon : MonoBehaviour, IInteractible
         pickup.SetActive(true);
     }
 
-    public void Interaction(CharacterController c)
+    public void Interaction(CharacterItemHandler c)
     {
 
-        c._characterItemHandler.PickupWeapons(_weapon);
+        c.PickupWeapons(_weapon);
 
         //remove self from world
         Destroy(this.gameObject);

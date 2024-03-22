@@ -36,7 +36,7 @@ public class CharacterItemHandler : MonoBehaviour
         //if interacable is found, interact with it
         if (hit.collider != null && hit.collider.TryGetComponent<IInteractible>(out IInteractible interactible))
         {
-            interactible.Interaction(GetComponent<CharacterController>());
+            interactible.Interaction(GetComponent<CharacterItemHandler>());
         }
     }
 
@@ -123,12 +123,6 @@ public class CharacterItemHandler : MonoBehaviour
         Destroy(_itemView.GetComponent<Rigidbody2D>());
 
         UpdateItemView();
-
-        if(TryGetComponent<CharacterMovement>(out CharacterMovement move))
-        {
-            move.ChangeJumpMod(-JumpPenalty);
-            move.ChangeSpeedMod(-250);
-        }
     }
 
     public void DropItem()
@@ -155,7 +149,7 @@ public class CharacterItemHandler : MonoBehaviour
         }
         else
         {
-            DropOther();
+            //DropOther();
         }
 
     }

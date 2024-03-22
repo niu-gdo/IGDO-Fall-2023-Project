@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem;
 
 public class CharacterItemHandler : MonoBehaviour
 {
@@ -76,6 +77,7 @@ public class CharacterItemHandler : MonoBehaviour
         position = (_currentWeapon != null) ? _currentWeapon._localViewPosition : _localItemPosition;
 
         if (Direction == FacingDirection.Right)
+        if (Direction == FacingDirection.Right)
         {
             _itemView.transform.localPosition = position;
 
@@ -97,6 +99,7 @@ public class CharacterItemHandler : MonoBehaviour
         //equip weapon in player
         _currentWeapon = weapon;
 
+        // create player sprite of weapon
         // create player sprite of weapon
         _weaponView = new GameObject(
             _currentWeapon.name,
@@ -159,12 +162,16 @@ public class CharacterItemHandler : MonoBehaviour
         PickupWeapon.CreatePickup(direction, _currentWeapon);
 
         //remove weapon from being equipped
+        //remove weapon from being equipped
         _currentWeapon = null;
 
         //remove player sprite of weapon
         Destroy(_weaponView);
 
     }
+
+    public void OnMove(InputValue value) => ProcessMovement(value);
+   
 
     public void OnMove(InputValue value) => ProcessMovement(value);
    

@@ -1,6 +1,8 @@
-using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Pool;
 
 /// <summary>
 /// Processes and propagates player input.
@@ -15,8 +17,10 @@ public class CharacterController : MonoBehaviour
 
     public float HorizontalInput { get => _movement.x; }
 
+    private Rigidbody2D _rb;
     private Vector2 _movement;
 
+ 
  
 
     public void OnShoot(InputValue value) => OnTriggerHeld?.Invoke(value.isPressed);

@@ -1,8 +1,12 @@
-using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Pool;
 
+/// <summary>
+/// Processes and propagates player input.
+/// </summary>
 /// <summary>
 /// Processes and propagates player input.
 /// </summary>

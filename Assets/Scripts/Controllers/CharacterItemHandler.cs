@@ -172,7 +172,4 @@ public class CharacterItemHandler : MonoBehaviour
 
     public void OnMove(InputValue value) => ProcessMovement(value);
    
-
-    public void OnMove(InputValue value) => ProcessMovement(value);
-   
 }

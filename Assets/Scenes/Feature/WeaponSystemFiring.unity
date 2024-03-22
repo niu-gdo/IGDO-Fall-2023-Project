@@ -796,36 +796,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c687a99397701b46a165cb3b602ebf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &756841351
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 756841344}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8479d8aa56aa51b49ad34628777d2902, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _currentWeapon: {fileID: 0}
-  _itemView: {fileID: 0}
-  _isHoldingItem: 0
-  _localItemPosition: {x: 0, y: 0}
-  _weaponView: {fileID: 0}
-  _pickupRange: 0.5
---- !u!114 &756841352
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 756841344}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f541e8172bdc7c7409b510c47280ad72, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  defaultProjectile: {fileID: 1207455310397484510, guid: 4012b4fefd9fa054587ef0437ce3f8c4, type: 3}
+  collectionCheck: 1
   _movementSpeed: 500
   _jumpForce: 450
   defaultCapacity: 15

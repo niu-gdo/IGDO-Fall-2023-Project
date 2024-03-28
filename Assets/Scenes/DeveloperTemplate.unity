@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 356603135}
   m_Layer: 0
   m_Name: Platform
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -483,9 +483,9 @@ GameObject:
   - component: {fileID: 626649734}
   - component: {fileID: 626649736}
   - component: {fileID: 626649735}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ground
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -616,7 +616,6 @@ GameObject:
   - component: {fileID: 756841348}
   - component: {fileID: 756841350}
   - component: {fileID: 756841349}
-  - component: {fileID: 756841352}
   - component: {fileID: 756841351}
   m_Layer: 0
   m_Name: Player
@@ -791,25 +790,18 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 756841344}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2c687a99397701b46a165cb3b602ebf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultProjectile: {fileID: 0}
+  collectionCheck: 1
+  _movementSpeed: 500
+  _jumpForce: 450
+  defaultCapacity: 15
+  maxSize: 15
 --- !u!114 &756841351
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 756841344}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d5c7390017179d45801b8e39188f324, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _weaponProjectile: {fileID: 1207455310397484510, guid: 4012b4fefd9fa054587ef0437ce3f8c4, type: 3}
---- !u!114 &756841352
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -822,7 +814,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _movementSpeed: 500
-  _jumpForce: 450
+  _jumpForce: 50
 --- !u!1 &1398729383
 GameObject:
   m_ObjectHideFlags: 0
@@ -870,7 +862,7 @@ GameObject:
   - component: {fileID: 1800887318}
   m_Layer: 0
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

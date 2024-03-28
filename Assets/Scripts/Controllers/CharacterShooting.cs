@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterController))]
 public class CharacterShooting : MonoBehaviour
@@ -27,12 +28,6 @@ public class CharacterShooting : MonoBehaviour
         _playerBoundingBox = GetComponent<CapsuleCollider2D>();
         _controller = GetComponent<CharacterController>();
 
-        _controller.OnTriggerHeld += OnTrigger;
-    }
-
-    private void OnDisable()
-    {
-        _controller.OnTriggerHeld -= OnTrigger;
     }
 
     private void TryFire()

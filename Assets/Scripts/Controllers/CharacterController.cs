@@ -12,8 +12,6 @@ using UnityEngine.Pool;
 /// </summary>
 public class CharacterController : MonoBehaviour
 {
-    private Rigidbody2D _rb;
-    private Vector2 _movement;
     private float _fireRate = 0; //Used to control weapon firing speed.
     private Vector2 _projectileSpawnModifier; //The offset for spawning projectiles, and the direction they should move in after being fired.
     private Camera _cam; //Gives access to the main game camera
@@ -26,8 +24,6 @@ public class CharacterController : MonoBehaviour
 
     [SerializeField] private GameObject defaultProjectile;
     [SerializeField] private bool collectionCheck = true; //Throw an exception if we try to return an existing projectile, already in the pool
-    [SerializeField] private float _movementSpeed = 500f;
-    [SerializeField] private float _jumpForce = 450f;
 
     // extra options to control the pool capacity and maximum size
     [SerializeField] private int defaultCapacity = 15;
@@ -40,16 +36,9 @@ public class CharacterController : MonoBehaviour
         _cam = Camera.main;
         _playerBoundingBox = GetComponent<CapsuleCollider2D>();
 
-        _rb = GetComponent<Rigidbody2D>();
-
         projectilePool = new ObjectPool<ProjectileController>(CreateProjectile,
                 OnGetFromPool, OnReleaseToPool, OnDestroyPooledObject,
                 collectionCheck, defaultCapacity, maxSize); //Instantiate the projectile pool.
-    }
-
-    private void FixedUpdate()
-    {
-        _rb.AddForce(_movement * _movementSpeed * Time.deltaTime);
     }
 
     private void TryFire()
@@ -60,7 +49,7 @@ public class CharacterController : MonoBehaviour
             default:
 
                 //Get values necessary to spawn projectiles outside of player collision
-                _projectileSpawnModifier = Input.mousePosition - _cam.WorldToScreenPoint(_rb.position);
+                _projectileSpawnModifier = Input.mousePosition - _cam.WorldToScreenPoint(transform.position);
                 _projectileSpawnModifier.Normalize();
                 _projectileSpawnModifier = _projectileSpawnModifier * _playerBoundingBox.size;
 
@@ -71,7 +60,7 @@ public class CharacterController : MonoBehaviour
                     return;
                 if(projectilePool != null)
                 {               
-                    bulletObject.transform.SetPositionAndRotation(_rb.position + _projectileSpawnModifier, Quaternion.identity);
+                    bulletObject.transform.SetPositionAndRotation((Vector2)transform.position + _projectileSpawnModifier, Quaternion.identity);
 
                     //Make the projectile move in the desired direction.
                     _projectileSpawnModifier.Normalize();
@@ -98,16 +87,6 @@ public class CharacterController : MonoBehaviour
     {
         //If the button is pressed, flip to true. Once the button is released, flip to false.
         _isTriggerHeld = !_isTriggerHeld;
-    }
-
-    public void OnMove(InputValue value)
-    {
-        _movement = value.Get<Vector2>();
-    }
-
-    public void OnJump(InputValue value)
-    {
-        _rb.AddForce(Vector2.up * _jumpForce);
     }
 
     // invoked when creating an item to populate the object pool

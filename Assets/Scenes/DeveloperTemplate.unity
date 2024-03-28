@@ -614,7 +614,6 @@ GameObject:
   - component: {fileID: 756841345}
   - component: {fileID: 756841347}
   - component: {fileID: 756841348}
-  - component: {fileID: 756841350}
   - component: {fileID: 756841349}
   - component: {fileID: 756841351}
   m_Layer: 0
@@ -783,24 +782,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &756841350
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 756841344}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c687a99397701b46a165cb3b602ebf3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  defaultProjectile: {fileID: 0}
-  collectionCheck: 1
-  _movementSpeed: 500
-  _jumpForce: 450
-  defaultCapacity: 15
-  maxSize: 15
 --- !u!114 &756841351
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -813,8 +794,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f541e8172bdc7c7409b510c47280ad72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _movementSpeed: 500
+  _moveSpeed: 0
   _jumpForce: 50
+  _groundCheck: {fileID: 0}
+  _groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &1398729383
 GameObject:
   m_ObjectHideFlags: 0

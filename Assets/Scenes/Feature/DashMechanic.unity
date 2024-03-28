@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 356603133}
   - component: {fileID: 356603134}
   - component: {fileID: 356603135}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Platform
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -794,12 +794,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f541e8172bdc7c7409b510c47280ad72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 0
-  _jumpForce: 50
-  _groundCheck: {fileID: 0}
+  _moveSpeed: 10
+  _jumpForce: 500
+  _dashCap: 7.5
+  _groundCheck: {fileID: 756841346}
   _groundLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
 --- !u!1 &1398729383
 GameObject:
   m_ObjectHideFlags: 0

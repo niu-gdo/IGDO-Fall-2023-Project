@@ -38,7 +38,7 @@ public class CharacterMovement : MonoBehaviour
     private void Update()
     { 
         // Check if the player is on the ground.
-        _isGrounded = Physics2D.OverlapCircle(_groundCheck.position, 0.1f, _groundLayer);
+        _isGrounded = Physics2D.OverlapCircle(_groundCheck.position, 1f, _groundLayer);
 
         // Move the character
         MoveCharacter();
@@ -86,6 +86,7 @@ public class CharacterMovement : MonoBehaviour
         if (_isGrounded)
         {
             _rb.AddForce(Vector2.up * _jumpForce);
+            
         }
     }
 }

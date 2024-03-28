@@ -1,16 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Pool;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Pool;
 
-/// <summary>
-/// Processes and propagates player input.
-/// </summary>
-/// <summary>
-/// Processes and propagates player input.
-/// </summary>
-public class CharacterController : MonoBehaviour
+public class FireSystem : MonoBehaviour
 {
     private float _fireRate = 0; //Used to control weapon firing speed.
     private Vector2 _projectileSpawnModifier; //The offset for spawning projectiles, and the direction they should move in after being fired.
@@ -44,7 +38,7 @@ public class CharacterController : MonoBehaviour
     private void TryFire()
     {
         //Handle the logic to determine what weapon to fire.
-        switch(_weaponHeld)
+        switch (_weaponHeld)
         {
             default:
 
@@ -58,8 +52,8 @@ public class CharacterController : MonoBehaviour
 
                 if (bulletObject == null)
                     return;
-                if(projectilePool != null)
-                {               
+                if (projectilePool != null)
+                {
                     bulletObject.transform.SetPositionAndRotation((Vector2)transform.position + _projectileSpawnModifier, Quaternion.identity);
 
                     //Make the projectile move in the desired direction.
@@ -68,7 +62,7 @@ public class CharacterController : MonoBehaviour
 
                     bulletObject.Deactivate();
                 }
-            
+
                 //Handle the firing rate.
                 _fireRate = Time.time + 0.07f;
                 break;
@@ -77,7 +71,7 @@ public class CharacterController : MonoBehaviour
 
     void Update()
     {
-        if(_isTriggerHeld && Time.time > _fireRate)
+        if (_isTriggerHeld && Time.time > _fireRate)
         {
             TryFire();
         }

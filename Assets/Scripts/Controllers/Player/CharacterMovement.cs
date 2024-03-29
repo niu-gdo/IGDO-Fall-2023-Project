@@ -10,9 +10,10 @@ using UnityEngine.InputSystem;
 public class CharacterMovement : MonoBehaviour
 {
 
-    // Movement and Jump speeds
+    // Movement, Dash, and Jump speeds
     [SerializeField] private float _moveSpeed;
     [SerializeField] private float _jumpForce;
+    [SerializeField] private float _dashCap;
 
     // The directional input for the character.
     private Vector2 _movementDirection;
@@ -28,6 +29,9 @@ public class CharacterMovement : MonoBehaviour
     // player to jump again.
     private bool _isGrounded;
 
+    // The direction the character is currently facing.
+    private Vector2 _characterFacing = Vector2.right;
+
     private void Awake()
     {
         // Get the rigidbody2d of the player
@@ -38,11 +42,10 @@ public class CharacterMovement : MonoBehaviour
     private void Update()
     { 
         // Check if the player is on the ground.
-        _isGrounded = Physics2D.OverlapCircle(_groundCheck.position, 0.1f, _groundLayer);
+        _isGrounded = Physics2D.OverlapCircle(_groundCheck.position, 1f, _groundLayer);
 
         // Move the character
         MoveCharacter();
-
     }
 
 
@@ -71,6 +74,15 @@ public class CharacterMovement : MonoBehaviour
     {
         // Read input value
         _movementDirection = value.Get<Vector2>();
+
+        if (value.Get<Vector2>() == Vector2.right)
+        {
+            _characterFacing = Vector2.right;
+        }
+        else if (value.Get<Vector2>() == Vector2.left)
+        {
+            _characterFacing = Vector2.left;
+        }
     }
 
 
@@ -86,6 +98,22 @@ public class CharacterMovement : MonoBehaviour
         if (_isGrounded)
         {
             _rb.AddForce(Vector2.up * _jumpForce);
+            
+        }
+    }
+
+    /// <summary>
+    /// OnJump
+    /// 
+    /// Allows the Character to dash. It does this by applying a force in the
+    /// direction the Character is facing to the characters rigidbody2D.
+    /// </summary>
+    /// <param name="value">This has no use, but is required.</param>
+    public void OnDash(InputValue value)
+    {
+        if (_isGrounded && _rb.velocity.x == 0)
+        {
+            _rb.velocity = _characterFacing * _dashCap;
         }
     }
 }

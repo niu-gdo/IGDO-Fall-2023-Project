@@ -796,6 +796,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveSpeed: 10
   _jumpForce: 500
+  _dashCap: 7.5
   _groundCheck: {fileID: 756841346}
   _groundLayer:
     serializedVersion: 2

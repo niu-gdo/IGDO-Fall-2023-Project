@@ -46,9 +46,6 @@ public class CharacterMovement : MonoBehaviour
 
         // Move the character
         MoveCharacter();
-        
-        Debug.Log(_rb.velocity.x);
-
     }
 
 
@@ -116,7 +113,6 @@ public class CharacterMovement : MonoBehaviour
     {
         if (_isGrounded && _rb.velocity.x == 0)
         {
-            //_rb.AddForce(_characterFacing * _dashForce);
             _rb.velocity = _characterFacing * _dashCap;
         }
     }

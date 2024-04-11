@@ -202,9 +202,9 @@ GameObject:
   - component: {fileID: 356603133}
   - component: {fileID: 356603134}
   - component: {fileID: 356603135}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Platform
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -551,9 +551,9 @@ GameObject:
   - component: {fileID: 626649734}
   - component: {fileID: 626649736}
   - component: {fileID: 626649735}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ground
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -682,7 +682,6 @@ GameObject:
   - component: {fileID: 756841345}
   - component: {fileID: 756841347}
   - component: {fileID: 756841348}
-  - component: {fileID: 756841350}
   - component: {fileID: 756841349}
   - component: {fileID: 756841351}
   - component: {fileID: 756841352}
@@ -853,19 +852,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &756841350
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 756841344}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c687a99397701b46a165cb3b602ebf3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _pickupRange: 1
 --- !u!114 &756841351
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -882,7 +868,8 @@ MonoBehaviour:
   _itemView: {fileID: 0}
   _isHoldingItem: 0
   _localItemPosition: {x: 1.5, y: 0}
-  JumpPenalty: 225
+  _weaponView: {fileID: 0}
+  _pickupRange: 0.5
 --- !u!114 &756841352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -895,10 +882,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f541e8172bdc7c7409b510c47280ad72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _movementSpeed: 500
+  _moveSpeed: 5
   _jumpForce: 450
-  _jumpModAmt: 0
-  _speedMod: 0
+  _dashCap: 0
+  _groundCheck: {fileID: 626649734}
+  _groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!255 &756841353
 FixedJoint2D:
   m_ObjectHideFlags: 0
@@ -1545,7 +1535,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe774d04c78f1a14bbec6a72ecc4c414, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _weapon: {fileID: 11400000, guid: da3ba4581c1940d49bde678d90cc2fed, type: 2}
+  _weapon: {fileID: 11400000, guid: 3433099dab5f679499b2a42ff801d46f, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
